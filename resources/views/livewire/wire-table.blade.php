@@ -4,7 +4,7 @@
             <thead>
                 <tr>
                     @foreach($columns as $column)
-                    <th scope="col">{{ $column }}</th>
+                    <th scope="col">{{ $column['label'] }}</th>
                     @endforeach
                 </tr>
             </thead>
