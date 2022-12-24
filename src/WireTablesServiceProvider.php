@@ -6,7 +6,7 @@ use Helvetiapps\WireTables\Http\Livewire\WireTable;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 
-class LagoonServiceProvider extends ServiceProvider
+class WireTablesServiceProvider extends ServiceProvider
 {
   public function register()
   {
