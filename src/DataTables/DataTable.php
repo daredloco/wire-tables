@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Schema;
 
 class DataTable{
 
-    public array $columns;
-    public array $rows;
+    public array $columns = [];
+    public array $rows = [];
 
     public function __construct(string ...$columns)
     {
