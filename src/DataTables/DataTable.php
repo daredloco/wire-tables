@@ -35,6 +35,10 @@ class DataTable{
         $this->rows = $newRows;
     }
 
+    public function setColumn(int $idx, string $label){
+        $this->columns[$idx] = $label;
+    }
+
     public function validRow(array $row): bool{
         return count($row) == count($this->columns);
     }
@@ -65,7 +69,7 @@ class DataTable{
         
         foreach($columns as $column){
             if(!in_array($column, $ignoredColumns)){
-                array_push($table->columns, $column);
+                array_push($table->columns, \Illuminate\Support\Str::camel($column));
             }
         }
 
