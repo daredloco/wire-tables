@@ -35,9 +35,9 @@ class DataTable{
         $this->rows = $newRows;
     }
 
-    public function setColumn(int $idx, string $name, string $label, Casts $cast = Casts::None){
+    public function setColumn(int $idx, string $label, Casts $cast = Casts::None){
         $this->columns[$idx] = [
-            'name' => $name,
+            'name' => $this->columns[$idx]["name"],
             'label' => $label,
             'cast' => $cast
         ];

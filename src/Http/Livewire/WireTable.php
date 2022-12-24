@@ -14,7 +14,7 @@ class WireTable extends Component
     public $content; //Can either be array or model
     public $customColumns = []; //Will replace the headers with custom ones
     public $customColumnCasts = []; //Will replace the casts of the headers with custom ones
-    
+
     //Table settings
     public $responsiveTable = true; //If true, the table will be set to responsive
     public $tableClasses = 'table-hover'; //The classes for the table
