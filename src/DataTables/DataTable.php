@@ -35,11 +35,11 @@ class DataTable{
         $this->rows = $newRows;
     }
 
-    public function setColumn(int $idx, string $label){
+    public function setColumn(int $idx, string $label, Casts $cast = null){
         $this->columns[$idx] = [
             'name' => $this->columns[$idx]["name"],
             'label' => $label,
-            'cast' => $this->columns[$idx]["cast"]
+            'cast' => is_null($cast) ? $this->columns[$idx]["cast"] : $cast
         ];
     }
 

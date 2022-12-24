@@ -46,7 +46,11 @@ class WireTable extends Component
         }
 
         foreach($this->customColumns as $idx => $label){
-            $dataTable->setColumn($idx, $label);
+            $ccCast = null;
+            if(array_key_exists($idx, $this->customColumnCasts)){
+                $ccCast = $this->customColumnCasts[$idx];
+            }
+            $dataTable->setColumn($idx, $label, $ccCast);
         }
 
         return view('wiretables::livewire.wire-table', ['rows' => $dataTable->getRows(), 'columns' => $dataTable->getColumns()]);
