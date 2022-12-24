@@ -17,7 +17,7 @@ class WireTablesServiceProvider extends ServiceProvider
   {
     $this->loadViewsFrom(__DIR__.'/../resources/views', 'wiretables');
 
-    Livewire::component('table', WireTable::class);
+    Livewire::component('wiretables-table', WireTable::class);
 
     if ($this->app->runningInConsole())
     {
