@@ -13,9 +13,29 @@
                     <tr class="">
                         @foreach($row as $colIdx => $colContent)
                             @if($firstBold && $colIdx == 0)
-                                <th scope="row">{{ $colContent }}</th>
+                                @if(\Helvetiapps\WireTables\Enums\Casts::Boolean)
+                                    <th scope="row">{{ $colContent == true ? __('True') : __('False') }}</th>
+                                @elseif(\Helvetiapps\WireTables\Enums\Casts::Numeric)
+                                    <th scope="row">{{ round($colContent,2) }}</th>
+                                @elseif(\Helvetiapps\WireTables\Enums\Casts::Date)
+                                    <th scope="row">{{ (new \Carbon\Carbon($colContent))->format('d/m/Y') }}</th>
+                                @elseif(\Helvetiapps\WireTables\Enums\Casts::Currency)
+                                    <th scope="row">R${{ number_format($colContent,2,',','.') }}</th>
+                                @else
+                                    <th scope="row">{{ $colContent }}</th>
+                                @endif
                             @else
-                                <td scope="row">{{ $colContent }}</td>
+                                @if(\Helvetiapps\WireTables\Enums\Casts::Boolean)
+                                    <td scope="row">{{ $colContent == true ? __('True') : __('False') }}</td>
+                                @elseif(\Helvetiapps\WireTables\Enums\Casts::Numeric)
+                                    <td scope="row">{{ round($colContent,2) }}</td>
+                                @elseif(\Helvetiapps\WireTables\Enums\Casts::Date)
+                                    <td scope="row">{{ (new \Carbon\Carbon($colContent))->format('d/m/Y') }}</td>
+                                @elseif(\Helvetiapps\WireTables\Enums\Casts::Currency)
+                                    <td scope="row">R${{ number_format($colContent,2,',','.') }}</td>
+                                @else
+                                    <td scope="row">{{ $colContent }}</td>
+                                @endif
                             @endif
                         @endforeach
                     </tr>
