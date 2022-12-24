@@ -66,8 +66,8 @@ class DataTable{
         $table = new DataTable();
         $columns = [];
         $m = new $model();
-        foreach($m->fillable as $fillable){
-            if(!in_array($fillable, $m->hidden)){
+        foreach($m->getFillable() as $fillable){
+            if(!in_array($fillable, $m->getHidden())){
                 array_push($columns, $fillable);
             }
         }
