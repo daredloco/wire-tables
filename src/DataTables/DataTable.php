@@ -78,7 +78,7 @@ class DataTable{
         
         foreach($columns as $column){
             if(!in_array($column, $ignoredColumns)){
-                array_push($table->columns, \Illuminate\Support\Str::camel($column['label']));
+                array_push($table->columns, ['label' => \Illuminate\Support\Str::camel($column['label']), 'cast' => $column['cast']]);
             }
         }
 
