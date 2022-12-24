@@ -43,7 +43,7 @@ class WireTable extends Component
             throw new Exception('Invalid content format. Needs to be either Model or Array! is => '.$this->content);
         }
 
-        return view('wiretables::livewire.wire-table', ['rows' => $dataTable["rows"], 'columns' => $dataTable["columns"]]);
+        return view('wiretables::livewire.wire-table', ['rows' => $dataTable->getRows(), 'columns' => $dataTable->getColumns()]);
     }
 
     public function pressCreate(){
