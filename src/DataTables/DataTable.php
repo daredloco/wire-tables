@@ -35,8 +35,9 @@ class DataTable{
         $this->rows = $newRows;
     }
 
-    public function setColumn(int $idx, string $label, Casts $cast = Casts::None){
+    public function setColumn(int $idx, string $name, string $label, Casts $cast = Casts::None){
         $this->columns[$idx] = [
+            'name' => $name,
             'label' => $label,
             'cast' => $cast
         ];
@@ -56,7 +57,7 @@ class DataTable{
 
     public function toArray(): array{
         return [
-            'headers' => $this->columns,
+            'columns' => $this->columns,
             'rows' => $this->rows
         ];
     }
@@ -71,21 +72,21 @@ class DataTable{
         $m = new $model();
         foreach($m->getFillable() as $fillable){
             if(!in_array($fillable, $m->getHidden())){
-                array_push($columns, ['label' => $fillable, 'cast' => Casts::None]);
+                array_push($columns, ['name' => $fillable, 'label' => $fillable, 'cast' => Casts::None]);
             }
         }
         $models = $model::all();
         
         foreach($columns as $column){
             if(!in_array($column, $ignoredColumns)){
-                array_push($table->columns, ['label' => \Illuminate\Support\Str::camel($column['label']), 'cast' => $column['cast']]);
+                array_push($table->columns, ['name' => $column['name'], 'label' => \Illuminate\Support\Str::camel($column['label']), 'cast' => $column['cast']]);
             }
         }
 
         foreach($models as $model){
             $row = [];
             foreach($table->columns as $column){
-                $row[count($row)] = $model->{$column};
+                $row[count($row)] = $model->{$column['name']};
             }
             $table->addRow($row);
         }
