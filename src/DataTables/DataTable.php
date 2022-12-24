@@ -64,7 +64,7 @@ class DataTable{
             throw new Exception('Model "'.$model.'" is not a valid Illuminate\\Database\\Eloquent\\Model!');
         }
         $table = new DataTable();
-        $columns = Schema::getColumnListing((new $model())->getTable());
+        $columns = (new $model())->attributesToArray(); //Schema::getColumnListing((new $model())->getTable());
         $models = $model::all();
         
         foreach($columns as $column){
