@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 class WireTable extends Component
 {
     public $content; //Can either be array or model
+    public $customHeaders = []; //Will replace the headers with custom ones
 
     //Table settings
     public $responsiveTable = true; //If true, the table will be set to responsive
@@ -41,6 +42,10 @@ class WireTable extends Component
             $dataTable = DataTable::fromModel($this->content, $this->ignoredColumns);
         }else{
             throw new Exception('Invalid content format. Needs to be either Model or Array! is => '.$this->content);
+        }
+
+        foreach($this->customHeaders as $idx => $label){
+            $dataTable->setColumn($idx, $label);
         }
 
         return view('wiretables::livewire.wire-table', ['rows' => $dataTable->getRows(), 'columns' => $dataTable->getColumns()]);
