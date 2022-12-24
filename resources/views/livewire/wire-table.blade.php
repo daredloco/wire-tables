@@ -12,8 +12,8 @@
                 @foreach($rows as $row)
                     <tr class="">
                         @foreach($row as $colIdx => $colContent)
+                        {{ dd($column, $colContent, $row) }}
                             @if($firstBold && $colIdx == 0)
-                                {{ dd($column, $colContent, $row) }}
                                 @if($column['cast'] == \Helvetiapps\WireTables\Enums\Casts::Boolean)
                                     <th scope="row">{{ $colContent == true ? __('True') : __('False') }}</th>
                                 @elseif($column['cast'] == \Helvetiapps\WireTables\Enums\Casts::Numeric)
