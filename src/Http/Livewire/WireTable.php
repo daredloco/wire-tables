@@ -45,8 +45,8 @@ class WireTable extends Component
             throw new Exception('Invalid content format. Needs to be either Model or Array! is => '.$this->content);
         }
 
-        foreach($this->customColumns as $idx => $arr){
-            $dataTable->setColumn($idx, $arr["label"], $arr["cast"]);
+        foreach($this->customColumns as $idx => $label){
+            $dataTable->setColumn($idx, $label);
         }
 
         return view('wiretables::livewire.wire-table', ['rows' => $dataTable->getRows(), 'columns' => $dataTable->getColumns()]);
