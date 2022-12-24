@@ -1,0 +1,26 @@
+{
+    "name": "helvetiapps/wire-tables",
+    "description": "Dynamic Tables for Laravel Livewire",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Helvetiapps\\WireTables\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Roman Wanner",
+            "email": "60240491+daredloco@users.noreply.github.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Helvetiapps\\WireTables\\WireTablesServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
