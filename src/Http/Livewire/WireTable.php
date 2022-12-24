@@ -37,7 +37,7 @@ class WireTable extends Component
     {   
         if(is_array($this->content)){
             $dataTable = DataTable::fromArray($this->content);
-        }elseif(is_subclass_of($this->content, Illuminate\Database\Eloquent\Model::class)){
+        }elseif(is_subclass_of(new $this->content(), Illuminate\Database\Eloquent\Model::class)){
             $dataTable = DataTable::fromModel($this->content, $this->ignoredColumns);
         }else{
             dd($this->content);
