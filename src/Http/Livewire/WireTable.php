@@ -17,7 +17,7 @@ class WireTable extends Component
     public $responsiveTable = true; //If true, the table will be set to responsive
     public $tableClasses = 'table-hover'; //The classes for the table
     public $firstBold = false; //If true, the first column will be bold
-    
+
     //Optional functions
     public $searchBar = true; //Is the searchbar on the top visible?
     public $searchables = []; //The columns that are searchable, if null all are searchable
@@ -40,7 +40,7 @@ class WireTable extends Component
         }elseif(is_subclass_of($this->content, Illuminate\Database\Eloquent\Model::class)){
             $dataTable = DataTable::fromModel($this->content, $this->ignoredColumns);
         }else{
-            throw new Exception('Invalid content format. Needs to be either Model or Array!');
+            throw new Exception('Invalid content format. Needs to be either Model or Array! is => '.$this->content);
         }
 
         return view('wiretables::livewire.wire-table', ['rows' => $dataTable["rows"], 'columns' => $dataTable["columns"]]);
