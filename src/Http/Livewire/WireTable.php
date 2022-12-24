@@ -37,10 +37,9 @@ class WireTable extends Component
     {   
         if(is_array($this->content)){
             $dataTable = DataTable::fromArray($this->content);
-        }elseif(is_subclass_of(new $this->content(), Illuminate\Database\Eloquent\Model::class)){
+        }elseif(new $this->content() instanceof \Illuminate\Database\Eloquent\Model){
             $dataTable = DataTable::fromModel($this->content, $this->ignoredColumns);
         }else{
-            dd(new $this->content());
             throw new Exception('Invalid content format. Needs to be either Model or Array! is => '.$this->content);
         }
 
