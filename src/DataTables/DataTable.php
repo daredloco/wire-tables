@@ -56,7 +56,7 @@ class DataTable{
 
     //STATICS
     public static function fromModel($model, array $ignoredColumns): DataTable{
-        if(!is_subclass_of($model, Illuminate\Database\Eloquent\Model::class)){
+        if(!(new $model() instanceof \Illuminate\Database\Eloquent\Model)){
             throw new Exception('Model "'.$model.'" is not a valid Illuminate\\Database\\Eloquent\\Model!');
         }
         $table = new DataTable();
