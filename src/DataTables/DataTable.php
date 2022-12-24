@@ -3,7 +3,7 @@
 namespace Helvetiapps\WireTables\DataTables;
 
 use Exception;
-use Illuminate\Support\Facades\Schema;
+use Helvetiapps\WireTables\Enums\Casts;
 
 class DataTable{
 
@@ -35,8 +35,11 @@ class DataTable{
         $this->rows = $newRows;
     }
 
-    public function setColumn(int $idx, string $label){
-        $this->columns[$idx] = $label;
+    public function setColumn(int $idx, string $label, Casts $cast = Casts::None){
+        $this->columns[$idx] = [
+            'label' => $label,
+            'cast' => $cast
+        ];
     }
 
     public function validRow(array $row): bool{
@@ -68,7 +71,7 @@ class DataTable{
         $m = new $model();
         foreach($m->getFillable() as $fillable){
             if(!in_array($fillable, $m->getHidden())){
-                array_push($columns, $fillable);
+                array_push($columns, ['label' => $fillable, 'cast' => Casts::None]);
             }
         }
         $models = $model::all();

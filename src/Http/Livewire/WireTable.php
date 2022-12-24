@@ -13,7 +13,8 @@ class WireTable extends Component
 {
     public $content; //Can either be array or model
     public $customColumns = []; //Will replace the headers with custom ones
-
+    public $customColumnCasts = []; //Will replace the casts of the headers with custom ones
+    
     //Table settings
     public $responsiveTable = true; //If true, the table will be set to responsive
     public $tableClasses = 'table-hover'; //The classes for the table
@@ -44,8 +45,8 @@ class WireTable extends Component
             throw new Exception('Invalid content format. Needs to be either Model or Array! is => '.$this->content);
         }
 
-        foreach($this->customColumns as $idx => $label){
-            $dataTable->setColumn($idx, $label);
+        foreach($this->customColumns as $idx => $arr){
+            $dataTable->setColumn($idx, $arr["label"], $arr["cast"]);
         }
 
         return view('wiretables::livewire.wire-table', ['rows' => $dataTable->getRows(), 'columns' => $dataTable->getColumns()]);
