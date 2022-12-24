@@ -44,7 +44,6 @@ class WireTable extends Component
             throw new Exception('Invalid content format. Needs to be either Model or Array! is => '.$this->content);
         }
 
-        dd($this->customColumns, $dataTable->getColumns());
         foreach($this->customColumns as $idx => $label){
             $dataTable->setColumn($idx, $label);
         }
