@@ -30,6 +30,7 @@ class WireTable extends Component
     public $createRoute = null; //The route to create a new item, will be ignored if not set
     public $editRoute = null; //The route to edit an existing item, will be ignored if not set
     public $deleteRoute = null; //The route to remove an existing item, will be ignored if not set
+    public $modelInRoute = null; //The name of the model inside the route
 
     //Deletion
     public $confirmDelete = true; //If set to true, a confirmation popup will be shown when user clicks on delete
@@ -53,7 +54,7 @@ class WireTable extends Component
             $dataTable->setColumn($idx, $label, $ccCast);
         }
 
-        return view('wiretables::livewire.wire-table', ['rows' => $dataTable->getRows(), 'columns' => $dataTable->getColumns()]);
+        return view('wiretables::livewire.wire-table', ['ids' => $dataTable->getIds(),'rows' => $dataTable->getRows(), 'columns' => $dataTable->getColumns()]);
     }
 
     public function pressCreate(){
@@ -61,8 +62,7 @@ class WireTable extends Component
     }
 
     public function pressEdit($id){
-        $placeholder = $this->getPlaceholder();
-        return redirect()->route($this->editRoute, [$placeholder => $id]);
+        return redirect()->route($this->editRoute, [$this->modelInRoute => $id]);
     }
 
     public function pressDelete($id){
@@ -75,15 +75,6 @@ class WireTable extends Component
 
     public function deleteObject($id){
         $this->showDeleteConfirmation = false;
-        $placeholder = $this->getPlaceholder();
-        return redirect()->route($this->deleteRoute, [$placeholder => $id]);
-    }
-
-    private function getPlaceholder():string{
-        $placeholder = explode('{', $this->editRoute);
-            if(count($placeholder) < 2){
-                throw new Exception('Invalid placeholder in route '.$this->editRoute);
-            }
-        return explode('}', $placeholder[1])[0];
+        return redirect()->route($this->deleteRoute, [$this->modelInRoute => $id]);
     }
 }

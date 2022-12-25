@@ -7,6 +7,7 @@ use Helvetiapps\WireTables\Enums\Casts;
 
 class DataTable{
 
+    public array $ids = [];
     public array $columns = [];
     public array $rows = [];
 
@@ -55,6 +56,10 @@ class DataTable{
         return $this->rows;
     }
 
+    public function getIds(): array{
+        return $this->ids;
+    }
+    
     public function toArray(): array{
         return [
             'columns' => $this->columns,
@@ -89,6 +94,7 @@ class DataTable{
                 $row[count($row)] = $model->{$column['name']};
             }
             $table->addRow($row);
+            array_push($table->ids, $model->id);
         }
         return $table;
     }
