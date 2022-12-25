@@ -27,7 +27,9 @@
         </table>
     </div>
     @if(!is_null($createRoute))
+    <div class="mt-3">
         <a href="{{ route($createRoute) }}" class="btn btn-success text-white">{{ __('Create') }}</a>
+    </div>
     @endif
     
 </div>
